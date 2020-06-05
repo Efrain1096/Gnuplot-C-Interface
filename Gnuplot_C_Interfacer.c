@@ -1,5 +1,3 @@
-
-
 /*
 A simple program that interfaces with the gnuplot terminal application to process data in C, then write it to a file.
 To then plot the results out to the terminal into a specified terminal mode or plot format.
@@ -21,8 +19,6 @@ void graphDataFromText(char *nameOfFile) // The pass in the char array of the fi
         Once found, I use that length value to replace the newline character with a null character. Without doinf this, there is
         a newline included at the end of the name, causing problems and frustration. The name char array is read as two separate commands
         or parameters by the Gnuplot terminal, which is not fun in the slightest!
-    
-    
     */
 
     nameOfFile[strlen(nameOfFile)-1] = '\0'; // As mentioned before, replace the newline character with a null character.
@@ -33,19 +29,14 @@ void graphDataFromText(char *nameOfFile) // The pass in the char array of the fi
     char graphTitle1[] = "\"Example Title\""; // This variable will store the label name of the graph that is prompted to the user.
                                               // It also needs literal double quotes. Otherwise, it's recognized as a token.
 
-    
     strcat(setTitleCommand1, graphTitle1);
-
-
 
     /*  What is going on below with the strcat() functions is tat I am essentially "gluing" together the proper commands
         to run in the Gnuplot terminal at runtime. Concatenating the proper characters together to form the command string.
     */
 
-
     char commandString[MAX_STRING_SIZE] = "plot ";
     char singleQuote1[MAX_STRING_SIZE] = "'";
-    //char fileName[MAX_STRING_SIZE] = fileReceived[0]; // This don't work SONNY JIM!!!
     char singleQuote2[MAX_STRING_SIZE] = "'";
     char fileExtension[MAX_STRING_SIZE] = ".txt";
 
