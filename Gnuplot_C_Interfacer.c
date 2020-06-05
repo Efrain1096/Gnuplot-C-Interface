@@ -9,9 +9,45 @@ By just changing the plot file command, the program can be used to graph a file 
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#define MAX_STRING_SIZE 80
+#define MAX_ARRAY_SIZE 80
 
-void graphDataFromText(char *nameOfFile) // The pass in the char array of the file name.
+
+
+// Pass by reference
+int fibonacciData (int *array, int n) // Test function to write to arrays and then write the values stored in the arrays to the data file.
+{
+    int fibIterations = 0;
+    int fibSum = 0;
+    int fib1 = 0;
+    int fib2 = 1;
+
+
+
+    while(fibIterations < n)
+    {
+        fibSum = fib1 + fib2;
+        fib1 = fib2;
+        fib2 = fibSum;
+        array[fibIterations] = fibSum;
+
+        fibIterations++;
+    }
+
+return fibSum;
+    /*Fibonacci Sequence formula: Fn = Fsub(n-1) + Fsub(n-2)
+     0,1,1,2,3,5,8,13,21,34,55,89,244......
+    
+    
+    */
+}
+
+
+
+
+
+
+
+void graphDataFromText(char *nameOfFile, int *dataArray) // The pass in the address char array of the file name and then the array where to plot data from.
 {
 
     /*  From what I have seen and experienced before, the newline character is included with the file name "string". 
@@ -35,10 +71,10 @@ void graphDataFromText(char *nameOfFile) // The pass in the char array of the fi
         to run in the Gnuplot terminal at runtime. Concatenating the proper characters together to form the command string.
     */
 
-    char commandString[MAX_STRING_SIZE] = "plot ";
-    char singleQuote1[MAX_STRING_SIZE] = "'";
-    char singleQuote2[MAX_STRING_SIZE] = "'";
-    char fileExtension[MAX_STRING_SIZE] = ".txt";
+    char commandString[MAX_ARRAY_SIZE] = "plot ";
+    char singleQuote1[MAX_ARRAY_SIZE] = "'";
+    char singleQuote2[MAX_ARRAY_SIZE] = "'";
+    char fileExtension[MAX_ARRAY_SIZE] = ".txt";
 
     strcat(singleQuote1, fileReceived[0]);
     strcat(singleQuote1, fileExtension);
@@ -48,8 +84,8 @@ void graphDataFromText(char *nameOfFile) // The pass in the char array of the fi
 
 
 
-    /*char doubleQuote1[MAX_STRING_SIZE] = "\"";
-    char doubleQuote2[MAX_STRING_SIZE] = "\"";
+    /*char doubleQuote1[MAX_ARRAY_SIZE] = "\"";
+    char doubleQuote2[MAX_ARRAY_SIZE] = "\"";
 
     strcat(doubleQuote1, fileReceived[0]);
     strcat(doubleQuote1, fileExtension);
@@ -65,6 +101,7 @@ void graphDataFromText(char *nameOfFile) // The pass in the char array of the fi
 
     // Fill the x and y arrays with dummy data to test array
 
+    /*
     for (int i = 0; i < pointPairs; i++)
     {
         xVals[i] = i;
@@ -74,6 +111,8 @@ void graphDataFromText(char *nameOfFile) // The pass in the char array of the fi
     {
         yVals[j] = j;
     }
+*/
+
     strcat(fileReceived[0], fileExtension);
     FILE *temp = fopen(fileReceived[0], "w");
 
@@ -86,9 +125,9 @@ void graphDataFromText(char *nameOfFile) // The pass in the char array of the fi
 
     fprintf(gnuplotPipe, "%s \n", "set terminal dumb"); // Here tthe terminal is set to a plotting mode.
 
-    for (int i = 0; i < pointPairs; i++)
+    for (int i = 0; i < pointPairs; i++) 
     {
-        fprintf(temp, "%lf %lf \n", xVals[i], yVals[i]); //Write the data to a temporary file
+        fprintf(temp, "%d %d \n", i, dataArray[i]); //Write the data to a temporary file at every new line.
     }
 
     // Send commands to the interactive gnuplot command terminal
@@ -101,13 +140,16 @@ void graphDataFromText(char *nameOfFile) // The pass in the char array of the fi
 
 int main()
 {
+    int dataArray[MAX_ARRAY_SIZE];
 
-    char name[MAX_STRING_SIZE];
+    fibonacciData(dataArray, 10); // Populate with fib values.
+
+
+    char name[MAX_ARRAY_SIZE];
 
     printf("Enter your name: ");
-    fgets(name, MAX_STRING_SIZE, stdin); // Use fgets() function to store strings.
+    fgets(name, MAX_ARRAY_SIZE, stdin); // Use fgets() function to store strings.
 
-    graphDataFromText(name); // Pass in the address of the array to the file name string, or array of characters.
+    graphDataFromText(name, dataArray); // Pass in the address of the array to the file name string, or array of characters.
 
-    return 0;
 }
