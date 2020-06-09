@@ -132,25 +132,15 @@ int main()
 {
     int dataArray[MAX_ARRAY_SIZE];
 
-    srand(time(NULL));
-
-    int randomNumber;
-    randomNumber = (rand() % 10) + 1 ; // Need to add one since numbers from 0 to 9 are printed.
-    printf("%d\n", randomNumber);
-
+    int arrayLength = 10;
     
-    fibonacciData(dataArray, randomNumber); // Populate with fib values.
-
-    int arrayLength = strlen(dataArray);
-
-    printf("%d\n", arrayLength);
-    /*
+    fibonacciData(dataArray, arrayLength); // Populate with fib values.
     char name[MAX_ARRAY_SIZE];
 
     printf("Enter your name: ");
     fgets(name, MAX_ARRAY_SIZE, stdin); // Use fgets() function to store strings.
 
     graphDataFromText(name, dataArray, arrayLength); // Pass in the address of the array to the file name string, or array of characters.
-*/
+
 return 0;
 }
