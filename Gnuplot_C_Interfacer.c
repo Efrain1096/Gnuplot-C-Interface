@@ -8,6 +8,8 @@ By just changing the plot file command, the program can be used to graph a file 
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include<time.h>
+
 #define MAX_ARRAY_SIZE 80
 
 
@@ -129,14 +131,16 @@ void graphDataFromText(char *nameOfFile, int *dataArray, int arraySize) // The p
 int main()
 {
     int dataArray[MAX_ARRAY_SIZE];
-    int dataValues = 20;
-    fibonacciData(dataArray, dataValues); // Populate with fib values.
 
+    int arrayLength = 10;
+    
+    fibonacciData(dataArray, arrayLength); // Populate with fib values.
     char name[MAX_ARRAY_SIZE];
 
     printf("Enter your name: ");
     fgets(name, MAX_ARRAY_SIZE, stdin); // Use fgets() function to store strings.
 
-    graphDataFromText(name, dataArray, dataValues); // Pass in the address of the array to the file name string, or array of characters.
+    graphDataFromText(name, dataArray, arrayLength); // Pass in the address of the array to the file name string, or array of characters.
 
+return 0;
 }
