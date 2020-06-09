@@ -5,7 +5,6 @@ To then plot the results out to the terminal into a specified terminal mode or p
 By just changing the plot file command, the program can be used to graph a file and it overwrites another
 
 */
-
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -20,8 +19,6 @@ int fibonacciData (int *array, int n) // Test function to write to arrays and th
     int fibSum = 0;
     int fib1 = 0;
     int fib2 = 1;
-
-
 
     while(fibIterations < n)
     {
@@ -41,13 +38,7 @@ return fibSum;
     */
 }
 
-
-
-
-
-
-
-void graphDataFromText(char *nameOfFile, int *dataArray) // The pass in the address char array of the file name and then the array where to plot data from.
+void graphDataFromText(char *nameOfFile, int *dataArray, int arraySize) // The pass in the address char array of the file name and then the array where to plot data from.
 {
 
     /*  From what I have seen and experienced before, the newline character is included with the file name "string". 
@@ -81,9 +72,6 @@ void graphDataFromText(char *nameOfFile, int *dataArray) // The pass in the addr
     strcat(singleQuote1, singleQuote2);
     strcat(commandString, singleQuote1);
 
-
-
-
     /*char doubleQuote1[MAX_ARRAY_SIZE] = "\"";
     char doubleQuote2[MAX_ARRAY_SIZE] = "\"";
 
@@ -94,7 +82,7 @@ void graphDataFromText(char *nameOfFile, int *dataArray) // The pass in the addr
     //char *commandsForGnuplot[] = {"set title "\"Title Example\"", "plot 'testData.txt'"}; is the format
     char *commandsForGnuplot[] = {setTitleCommand1, commandString};
 
-    int pointPairs = 10;
+    int pointPairs = arraySize;
     int gnuplotCommands = 2;
     double xVals[pointPairs];
     double yVals[pointPairs];
@@ -141,15 +129,14 @@ void graphDataFromText(char *nameOfFile, int *dataArray) // The pass in the addr
 int main()
 {
     int dataArray[MAX_ARRAY_SIZE];
-
-    fibonacciData(dataArray, 10); // Populate with fib values.
-
+    int dataValues = 20;
+    fibonacciData(dataArray, dataValues); // Populate with fib values.
 
     char name[MAX_ARRAY_SIZE];
 
     printf("Enter your name: ");
     fgets(name, MAX_ARRAY_SIZE, stdin); // Use fgets() function to store strings.
 
-    graphDataFromText(name, dataArray); // Pass in the address of the array to the file name string, or array of characters.
+    graphDataFromText(name, dataArray, dataValues); // Pass in the address of the array to the file name string, or array of characters.
 
 }
