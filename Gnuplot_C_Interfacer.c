@@ -68,12 +68,13 @@ void graphDataFromText(char *nameOfFile, int *dataArray, int arraySize) // The p
     char singleQuote1[MAX_ARRAY_SIZE] = "'";
     char singleQuote2[MAX_ARRAY_SIZE] = "'";
     char fileExtension[MAX_ARRAY_SIZE] = ".txt";
+    char lineStyle[MAX_ARRAY_SIZE] = "with linespoint"; // Here the line style is specified.
 
     strcat(singleQuote1, fileReceived[0]);
     strcat(singleQuote1, fileExtension);
     strcat(singleQuote1, singleQuote2);
     strcat(commandString, singleQuote1);
-
+    strcat(commandString, lineStyle);
     /*char doubleQuote1[MAX_ARRAY_SIZE] = "\"";
     char doubleQuote2[MAX_ARRAY_SIZE] = "\"";
 
@@ -132,7 +133,7 @@ int main()
 {
     int dataArray[MAX_ARRAY_SIZE];
 
-    int arrayLength = 10;
+    int arrayLength = 30;
     
     fibonacciData(dataArray, arrayLength); // Populate with fib values.
     char name[MAX_ARRAY_SIZE];
