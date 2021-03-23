@@ -2,6 +2,35 @@
 A simple program that interfaces with the gnuplot terminal application to process data in C, then write it to a file.
 To then plot the results out to the terminal into a specified terminal mode or plot format.
 By just changing the plot file command, the program can be used to graph a file and it overwrites another
+
+
+I have figured out, months later, how to output an actual PNG graph to help illustrate data in a more elegant and understandable fashion
+
+
+Enter the following commmands:
+
+In the Linux terminal:
+1. gnuplot
+
+In the Gnuplot terminal:
+
+1. set output "Name_of_file.png" 
+Example: "FibPlot.png"
+
+
+2. set terminal pngcairo size Width, Length enhanced font "Font, Font_size"
+Example: set terminal pngcairo size 800,600 enhanced font "Verdana, 18"
+
+3. set xlabel "X_label_name"
+Example: set xlabel "n"
+4. set ylabel "Y_label_name"
+Example: set ylabel "F(n)"
+
+5. set grid
+
+6. plot "Insert_name_of_file.fileType"
+Example: plot "FibNumbers.txt"
+
 */
 #include <stdlib.h>
 #include <string.h>
@@ -122,12 +151,12 @@ int main()
 {
     int dataArray[MAX_ARRAY_SIZE];
 
-    int arrayLength = 30;
+    int arrayLength = 10;
     
     fibonacciData(dataArray, arrayLength); // Populate with fib values.
     char name[MAX_ARRAY_SIZE];
 
-    printf("Enter your name: ");
+    printf("Enter name of file to plot Fibonacci numbers: ");
     fgets(name, MAX_ARRAY_SIZE, stdin); // Use fgets() function to store strings.
 
     graphDataFromText(name, dataArray, arrayLength); // Pass in the address of the array to the file name string, or array of characters.
