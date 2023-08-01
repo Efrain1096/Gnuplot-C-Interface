@@ -47,8 +47,24 @@ int fibonacciData (int *array, int n) // Test function to write to arrays and th
     int fib1 = 0;
     int fib2 = 1;
 
+
+
     while(fibIterations < n)
     {
+
+        if (fibIterations == 0) // I completely forgot to take into account the two initial base case initial values for 0 and 1.
+        {
+            array[0] = 0;
+            fibIterations++;
+        }
+        
+        if (fibIterations == 1)
+        {
+            array[1] = 1;
+            fibIterations++;
+            fibSum = 1;
+        }
+        
         fibSum = fib1 + fib2;
         fib1 = fib2;
         fib2 = fibSum;
@@ -151,13 +167,19 @@ int main()
 {
     int dataArray[MAX_ARRAY_SIZE];
 
-    int arrayLength = 10;
-    
-    fibonacciData(dataArray, arrayLength); // Populate with fib values.
-    char name[MAX_ARRAY_SIZE];
+    // int arrayLength = 10;
+    int arrayLength;
+    char name[MAX_ARRAY_SIZE]; // Set the maximum file name to 80 characters.
 
     printf("Enter name of file to plot Fibonacci numbers: ");
     fgets(name, MAX_ARRAY_SIZE, stdin); // Use fgets() function to store strings.
+
+
+
+    printf("Enter number of fibonacci iterations: ");
+    //fgets(arrayLength, MAX_ARRAY_SIZE, stdin);
+    scanf("%d", &arrayLength);
+    fibonacciData(dataArray, arrayLength); // Populate with fib values.
 
     graphDataFromText(name, dataArray, arrayLength); // Pass in the address of the array to the file name string, or array of characters.
 
