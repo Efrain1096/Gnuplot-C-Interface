@@ -79,7 +79,7 @@ return fibSum;
     */
 }
 
-void graphDataFromText(char *nameOfFile, int *dataArray, int arraySize) // The pass in the address char array of the file name and then the array where to plot data from.
+void graphToTerminal(char *nameOfFile, int *dataArray, int arraySize) // The pass in the address char array of the file name and then the array where to plot data from.
 {
     /*  From what I have seen and experienced before, the newline character is included with the file name "string". 
         in order to remedy that, I use the sizeof() function to find how many actual characters or elements are in the array.
@@ -163,6 +163,21 @@ void graphDataFromText(char *nameOfFile, int *dataArray, int arraySize) // The p
     }
 }
 
+void generatePNGPlot (char *nameOfFile) /*The parameters needed would be the name of the file to obtain the data.*/
+{
+
+
+
+
+
+
+
+}
+
+
+
+
+
 int main()
 {
     int dataArray[MAX_ARRAY_SIZE];
@@ -181,7 +196,7 @@ int main()
     scanf("%d", &arrayLength);
     fibonacciData(dataArray, arrayLength); // Populate with fib values.
 
-    graphDataFromText(name, dataArray, arrayLength); // Pass in the address of the array to the file name string, or array of characters.
+    graphToTerminal(name, dataArray, arrayLength); // Pass in the address of the array to the file name string, or array of characters.
 
 return 0;
 }
