@@ -52,7 +52,7 @@ int fibonacciData (int *array, int n) // Test function to write to arrays and th
     while(fibIterations < n)
     {
 
-        if (fibIterations == 0) // I completely forgot to take into account the two initial base case initial values for 0 and 1.
+        if (fibIterations == 0) // Take into account the two initial base case initial values for 0 and 1.
         {
             array[0] = 0;
             fibIterations++;
@@ -82,8 +82,8 @@ return fibSum;
 void graphDataFromText(char *nameOfFile, int *dataArray, int arraySize) // The pass in the address char array of the file name and then the array where to plot data from.
 {
     /*  From what I have seen and experienced before, the newline character is included with the file name "string". 
-        in order to remefy that, I use the sizeof() function to find how many actual characters or elements are in the array.
-        Once found, I use that length value to replace the newline character with a null character. Without doinf this, there is
+        in order to remedy that, I use the sizeof() function to find how many actual characters or elements are in the array.
+        Once found, I use that length value to replace the newline character with a null character. Without doing this, there is
         a newline included at the end of the name, causing problems and frustration. The name char array is read as two separate commands
         or parameters by the Gnuplot terminal, which is not fun in the slightest!
     */
@@ -148,14 +148,14 @@ void graphDataFromText(char *nameOfFile, int *dataArray, int arraySize) // The p
 
     FILE *gnuplotPipe = popen("gnuplot", "w");
 
-    fprintf(gnuplotPipe, "%s \n", "set terminal dumb"); // Here tthe terminal is set to a plotting mode.
+    fprintf(gnuplotPipe, "%s \n", "set terminal dumb"); // Here the terminal is set to a plotting mode.
 
     for (int i = 0; i < pointPairs; i++) 
     {
         fprintf(temp, "%d %d \n", i, dataArray[i]); //Write the data to a temporary file at every new line.
     }
 
-    // Send commands to the interactive gnuplot command terminal
+    // Send commands to the interactive gnuplot command terminal.
 
     for (int i = 0; i < gnuplotCommands; i++)
     {
