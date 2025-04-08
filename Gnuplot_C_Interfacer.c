@@ -4,7 +4,8 @@ To then plot the results out to the terminal into a specified terminal mode or p
 By just changing the plot file command, the program can be used to graph a file and it overwrites another
 
 
-I have figured out, months later, how to output an actual PNG graph to help illustrate data in a more elegant and understandable fashion
+I have figured out, months later, how to output, manually, an actual PNG graph to help illustrate data in a more elegant and understandable fashion.abort
+Maybe this should be implemented as a feature to automatically plot a PNG file of the plot instead of typing what's below.
 
 
 Enter the following commmands:
